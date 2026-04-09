@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- SEO: Primary -->
+  <title>BillDay: Never Miss a Bill Again | Free Bill Tracker & Reminder App</title>
+  <meta name="description" content="BillDay is the free bill tracker and reminder app for Android. Track household bills, get smart reminders before they're due, and see your spending at a glance. No account required. 100% private." />
+  <meta name="keywords" content="bill tracker, bill reminder app, payment tracker, utility bill reminder, bill organizer, bill calendar, household bills, direct debit tracker, insurance renewal reminder, never miss a bill, bill management app, free bill tracker, utility tracker, bill planner" />
+  <meta name="author" content="Wellfield Apps" />
+  <link rel="canonical" href="https://riodigitalstudios.github.io/billday/" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="BillDay: Never Miss a Bill Again" />
+  <meta property="og:description" content="The free, private bill tracker and reminder app for Android. Track every household bill, get reminded before they're due, and never miss a payment." />
+  <meta property="og:image" content="https://riodigitalstudios.github.io/billday/feature_graphic.png" />
+  <meta property="og:url" content="https://riodigitalstudios.github.io/billday/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="BillDay" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="BillDay: Never Miss a Bill Again" />
+  <meta name="twitter:description" content="Free bill tracker & reminder app. No account needed. 100% private." />
+  <meta name="twitter:image" content="https://riodigitalstudios.github.io/billday/feature_graphic.png" />
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MobileApplication",
+    "name": "BillDay",
+    "operatingSystem": "Android",
+    "applicationCategory": "FinanceApplication",
+    "description": "Free bill tracker and reminder app. Track household bills, utilities, insurance and subscriptions. Get smart reminders, see your spending, catch renewals. No account required, 100% private.",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "installUrl": "https://play.google.com/store/apps/details?id=com.wellfield.billday",
+    "author": {
+      "@type": "Organization",
+      "name": "Wellfield Apps"
+    }
+  }
+  </script>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="icon.png" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue-900: #0B2545;
+      --blue-800: #0D3B66;
+      --blue-700: #1565C0;
+      --blue-600: #1976D2;
+      --blue-500: #1E88E5;
+      --blue-400: #42A5F5;
+      --blue-100: #BBDEFB;
+      --blue-50:  #E3F2FD;
+      --white:    #FFFFFF;
+      --gray-50:  #F8FAFC;
+      --gray-100: #F1F5F9;
+      --gray-200: #E2E8F0;
+      --gray-400: #94A3B8;
+      --gray-500: #64748B;
+      --gray-600: #475569;
+      --gray-700: #334155;
+      --gray-800: #1E293B;
+      --gray-900: #0F172A;
+      --green:    #16A34A;
+      --amber:    #F59E0B;
+      --radius:   12px;
+      --radius-lg: 20px;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
+      --shadow-md: 0 4px 16px rgba(0,0,0,0.08);
+      --shadow-lg: 0 12px 40px rgba(0,0,0,0.12);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', system-ui, sans-serif;
+      color: var(--gray-800);
+      background: var(--white);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ─── NAV ─── */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--gray-200);
+      transition: box-shadow 0.3s;
+    }
+    .nav.scrolled { box-shadow: var(--shadow-sm); }
+    .nav-inner {
+      max-width: 1120px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 24px;
+    }
+    .nav-brand {
+      display: flex; align-items: center; gap: 10px;
+      text-decoration: none;
+    }
+    .nav-logo { width: 36px; height: 36px; border-radius: 8px; }
+    .nav-name {
+      font-size: 20px; font-weight: 700; color: var(--gray-900);
+      letter-spacing: -0.3px;
+    }
+    .nav-name em { color: var(--blue-700); font-style: normal; }
+    .nav-links { display: flex; align-items: center; gap: 28px; }
+    .nav-links a {
+      font-size: 14px; font-weight: 500; color: var(--gray-600);
+      text-decoration: none; transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--blue-700); }
+    .nav-cta {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 8px 18px; border-radius: 8px;
+      background: var(--blue-700); color: var(--white) !important;
+      font-weight: 600; font-size: 14px;
+      transition: background 0.2s;
+    }
+    .nav-cta:hover { background: var(--blue-600); }
+    .nav-mobile-toggle {
+      display: none; background: none; border: none; cursor: pointer;
+      padding: 8px;
+    }
+    .nav-mobile-toggle svg { display: block; }
+
+    /* ─── HERO ─── */
+    .hero {
+      padding: 140px 24px 80px;
+      background: linear-gradient(168deg, var(--blue-50) 0%, var(--white) 50%, var(--gray-50) 100%);
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; top: -200px; right: -200px;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(21,101,192,0.06) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .hero-inner {
+      max-width: 1120px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 64px; align-items: center;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 6px 14px; border-radius: 100px;
+      background: rgba(21,101,192,0.08);
+      color: var(--blue-700);
+      font-size: 13px; font-weight: 600;
+      margin-bottom: 20px;
+    }
+    .hero-badge-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--green);
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(36px, 5vw, 56px);
+      font-weight: 700; line-height: 1.1;
+      color: var(--gray-900);
+      letter-spacing: -1px; margin-bottom: 20px;
+    }
+    .hero h1 em {
+      color: var(--blue-700); font-style: italic;
+    }
+    .hero-sub {
+      font-size: 18px; line-height: 1.7;
+      color: var(--gray-600); max-width: 480px;
+      margin-bottom: 32px;
+    }
+    .hero-cta-row {
+      display: flex; align-items: center; gap: 20px;
+      flex-wrap: wrap;
+    }
+    .play-badge { transition: transform 0.2s; display: inline-block; }
+    .play-badge:hover { transform: scale(1.03); }
+    .play-badge img { height: 48px; }
+    .hero-trust {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 13px; color: var(--gray-500);
+    }
+    .hero-trust svg { flex-shrink: 0; }
+
+    /* Hero phone */
+    .hero-visual {
+      position: relative;
+      display: flex; justify-content: center; align-items: center;
+    }
+    .hero-phone {
+      position: relative; width: 260px;
+      border-radius: 24px; overflow: hidden;
+      box-shadow: var(--shadow-lg), 0 0 0 1px rgba(0,0,0,0.04);
+      background: var(--white);
+    }
+    .hero-phone img { display: block; width: 100%; height: auto; }
+    .hero-float {
+      position: absolute;
+      background: var(--white);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-lg);
+      padding: 12px 16px;
+      animation: float 6s ease-in-out infinite;
+    }
+    .hero-float-1 {
+      top: 20px; right: -30px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .hero-float-2 {
+      bottom: 80px; left: -30px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .hf-icon {
+      width: 32px; height: 32px; border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px;
+    }
+    .hf-icon-amber { background: rgba(245,158,11,0.12); }
+    .hf-icon-green { background: rgba(22,163,74,0.12); }
+    .hf-text { font-size: 12px; line-height: 1.4; }
+    .hf-text strong { display: block; color: var(--gray-900); font-weight: 600; }
+    .hf-text span { color: var(--gray-500); }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    /* ─── SECTION SHARED ─── */
+    .section-label {
+      font-size: 13px; font-weight: 600;
+      color: var(--blue-700); text-transform: uppercase;
+      letter-spacing: 1.5px; margin-bottom: 12px;
+    }
+    .section-heading {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(28px, 4vw, 40px);
+      font-weight: 700; color: var(--gray-900);
+      line-height: 1.2; letter-spacing: -0.5px;
+      margin-bottom: 16px;
+    }
+    .section-sub {
+      font-size: 17px; line-height: 1.7; color: var(--gray-500);
+    }
+
+    /* ─── VALUE PROPS ─── */
+    .values {
+      padding: 100px 24px; background: var(--white);
+    }
+    .values-header {
+      text-align: center; max-width: 600px; margin: 0 auto 60px;
+    }
+    .values-grid {
+      max-width: 1120px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .value-card {
+      padding: 36px 28px; border-radius: var(--radius-lg);
+      border: 1px solid var(--gray-200);
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+    .value-card:hover {
+      border-color: var(--blue-400); box-shadow: var(--shadow-md);
+    }
+    .vc-icon {
+      width: 48px; height: 48px; border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px; margin-bottom: 20px;
+    }
+    .vc-icon-blue { background: rgba(21,101,192,0.08); }
+    .vc-icon-green { background: rgba(22,163,74,0.08); }
+    .vc-icon-amber { background: rgba(245,158,11,0.08); }
+    .value-card h3 {
+      font-size: 18px; font-weight: 700;
+      color: var(--gray-900); margin-bottom: 10px;
+    }
+    .value-card p {
+      font-size: 15px; line-height: 1.7; color: var(--gray-500);
+    }
+
+    /* ─── HOW IT WORKS ─── */
+    .how {
+      padding: 100px 24px; background: var(--gray-50);
+    }
+    .how-header {
+      text-align: center; max-width: 600px; margin: 0 auto 60px;
+    }
+    .steps {
+      max-width: 800px; margin: 0 auto;
+      display: flex; flex-direction: column;
+      position: relative;
+    }
+    .steps::before {
+      content: '';
+      position: absolute; left: 23px; top: 24px; bottom: 24px;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--blue-400), var(--blue-100));
+    }
+    .step {
+      display: flex; gap: 24px; align-items: flex-start;
+      padding: 24px 0; position: relative;
+    }
+    .step-num {
+      width: 48px; height: 48px; border-radius: 50%;
+      background: var(--white);
+      border: 2px solid var(--blue-400);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px; font-weight: 700; color: var(--blue-700);
+      flex-shrink: 0; z-index: 1;
+    }
+    .step-content h3 {
+      font-size: 18px; font-weight: 700; color: var(--gray-900);
+      margin-bottom: 6px;
+    }
+    .step-content p {
+      font-size: 15px; line-height: 1.7; color: var(--gray-500);
+    }
+
+    /* ─── SCREENSHOTS ─── */
+    .screenshots {
+      padding: 100px 24px; background: var(--white);
+    }
+    .screenshots-header {
+      text-align: center; max-width: 600px; margin: 0 auto 60px;
+    }
+    .screenshots-scroll {
+      max-width: 1120px; margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 16px;
+    }
+    .ss-card {
+      border-radius: var(--radius-lg);
+      overflow: hidden; background: var(--gray-100);
+      border: 1px solid var(--gray-200);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .ss-card:hover {
+      transform: translateY(-4px); box-shadow: var(--shadow-md);
+    }
+    .ss-card img { display: block; width: 100%; height: auto; }
+    .ss-caption {
+      padding: 12px 16px; text-align: center;
+      font-size: 13px; font-weight: 600; color: var(--gray-600);
+      background: var(--white);
+      border-top: 1px solid var(--gray-200);
+    }
+
+    /* ─── COUNTRIES ─── */
+    .countries {
+      padding: 100px 24px;
+      background: linear-gradient(168deg, var(--gray-50) 0%, var(--white) 100%);
+    }
+    .countries-inner {
+      max-width: 1120px; margin: 0 auto;
+    }
+    .countries-header {
+      text-align: center; max-width: 640px; margin: 0 auto 60px;
+    }
+    .countries-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 24px; max-width: 900px; margin: 0 auto;
+    }
+    .country-card {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      background: var(--white);
+      border: 1px solid var(--gray-200);
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .country-card:hover {
+      transform: translateY(-4px); box-shadow: var(--shadow-md);
+    }
+    .country-card img {
+      display: block; width: 100%; height: auto;
+    }
+    .country-label {
+      padding: 14px 16px; text-align: center;
+      border-top: 1px solid var(--gray-200);
+    }
+    .country-label .cl-flag { font-size: 18px; margin-right: 6px; }
+    .country-label .cl-name {
+      font-size: 14px; font-weight: 600; color: var(--gray-800);
+    }
+    .country-label .cl-sub {
+      display: block; font-size: 12px; color: var(--gray-500); margin-top: 2px;
+    }
+    .countries-more {
+      text-align: center; margin-top: 32px;
+      font-size: 15px; color: var(--gray-500);
+    }
+    .countries-more strong { color: var(--gray-700); }
+
+    /* ─── PRIVACY ─── */
+    .privacy {
+      padding: 100px 24px; background: var(--white);
+    }
+    .privacy-inner {
+      max-width: 1120px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 64px; align-items: center;
+    }
+    .privacy-content .section-label,
+    .privacy-content .section-heading,
+    .privacy-content .section-sub { text-align: left; }
+    .privacy-content .section-sub { margin-bottom: 32px; }
+    .privacy-points { display: flex; flex-direction: column; gap: 16px; }
+    .pp-item { display: flex; align-items: flex-start; gap: 14px; }
+    .pp-check {
+      width: 28px; height: 28px; border-radius: 8px;
+      background: rgba(22,163,74,0.1);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; margin-top: 2px;
+    }
+    .pp-check svg { width: 16px; height: 16px; color: var(--green); }
+    .pp-item h4 {
+      font-size: 15px; font-weight: 600; color: var(--gray-900); margin-bottom: 2px;
+    }
+    .pp-item p {
+      font-size: 14px; line-height: 1.6; color: var(--gray-500);
+    }
+    .privacy-visual {
+      display: flex; align-items: center; justify-content: center;
+    }
+    .privacy-card {
+      background: var(--gray-50);
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius-lg);
+      padding: 40px; box-shadow: var(--shadow-md);
+      text-align: center; max-width: 320px;
+    }
+    .pc-shield { font-size: 56px; margin-bottom: 16px; }
+    .pc-title {
+      font-size: 20px; font-weight: 700; color: var(--gray-900); margin-bottom: 8px;
+    }
+    .pc-desc {
+      font-size: 14px; line-height: 1.6; color: var(--gray-500); margin-bottom: 24px;
+    }
+    .pc-badges { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+    .pc-badge {
+      padding: 6px 12px; border-radius: 100px;
+      font-size: 12px; font-weight: 600;
+      background: var(--blue-50); color: var(--blue-700);
+    }
+
+    /* ─── CTA ─── */
+    .cta-section {
+      padding: 100px 24px;
+      background: linear-gradient(135deg, var(--blue-900) 0%, var(--blue-700) 60%, var(--blue-600) 100%);
+      text-align: center; position: relative; overflow: hidden;
+    }
+    .cta-section::before {
+      content: '';
+      position: absolute; top: -100px; left: 50%; transform: translateX(-50%);
+      width: 800px; height: 800px;
+      background: radial-gradient(circle, rgba(255,255,255,0.04) 0%, transparent 60%);
+      border-radius: 50%;
+    }
+    .cta-inner {
+      max-width: 640px; margin: 0 auto; position: relative;
+    }
+    .cta-section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(28px, 4vw, 42px);
+      font-weight: 700; color: var(--white);
+      line-height: 1.2; letter-spacing: -0.5px; margin-bottom: 16px;
+    }
+    .cta-section p {
+      font-size: 17px; line-height: 1.7;
+      color: rgba(255,255,255,0.75); margin-bottom: 36px;
+    }
+    .cta-play { transition: transform 0.2s; display: inline-block; }
+    .cta-play:hover { transform: scale(1.04); }
+    .cta-play img { height: 52px; }
+    .cta-note {
+      margin-top: 20px; font-size: 13px; color: rgba(255,255,255,0.5);
+    }
+
+    /* ─── FOOTER ─── */
+    .footer {
+      padding: 40px 24px; background: var(--gray-900); color: var(--gray-400);
+    }
+    .footer-inner {
+      max-width: 1120px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 16px;
+    }
+    .footer-brand {
+      display: flex; align-items: center; gap: 10px;
+    }
+    .footer-brand img { width: 28px; height: 28px; border-radius: 6px; }
+    .footer-brand span { font-size: 15px; font-weight: 600; color: var(--gray-200); }
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a {
+      font-size: 13px; color: var(--gray-400);
+      text-decoration: none; transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--gray-200); }
+    .footer-copy { font-size: 12px; color: var(--gray-500); width: 100%; text-align: center; margin-top: 8px; }
+
+    /* ─── ANIMATIONS ─── */
+    .fade-up {
+      opacity: 0; transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .nav-mobile-toggle { display: block; }
+      .hero-inner { grid-template-columns: 1fr; text-align: center; }
+      .hero-sub { margin-left: auto; margin-right: auto; }
+      .hero-cta-row { justify-content: center; }
+      .hero-trust { justify-content: center; }
+      .hero-visual { margin-top: 20px; }
+      .hero-float { display: none; }
+      .values-grid { grid-template-columns: 1fr; }
+      .screenshots-scroll { grid-template-columns: repeat(3, 1fr); }
+      .countries-grid { grid-template-columns: 1fr; max-width: 300px; margin: 0 auto; }
+      .privacy-inner { grid-template-columns: 1fr; }
+      .privacy-visual { order: -1; }
+      .footer-inner { flex-direction: column; text-align: center; }
+    }
+    @media (max-width: 600px) {
+      .screenshots-scroll { grid-template-columns: repeat(2, 1fr); }
+      .screenshots-scroll .ss-card:nth-child(5) { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ─── NAV ─── -->
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="#" class="nav-brand">
+        <img src="icon.png" alt="BillDay app icon" class="nav-logo" width="36" height="36" />
+        <span class="nav-name">Bill<em>Day</em></span>
+      </a>
+      <div class="nav-links">
+        <a href="#features">Features</a>
+        <a href="#how-it-works">How It Works</a>
+        <a href="#see-it">Screenshots</a>
+        <a href="#privacy">Privacy</a>
+        <a href="https://play.google.com/store/apps/details?id=com.wellfield.billday" class="nav-cta" target="_blank" rel="noopener">
+          Get the App
+        </a>
+      </div>
+      <button class="nav-mobile-toggle" aria-label="Open navigation menu" onclick="document.querySelector('.nav-links').classList.toggle('mobile-open')">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--gray-700)" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ─── HERO ─── -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-content">
+        <div class="hero-badge fade-up">
+          <span class="hero-badge-dot"></span>
+          Free on Android
+        </div>
+
+        <h1 class="fade-up">Know what's due.<br/><em>Before it's overdue.</em></h1>
+
+        <p class="hero-sub fade-up">
+          BillDay tracks every household bill, from electricity and broadband to insurance and mortgage, and reminds you before each one is due. See your monthly spend at a glance, never miss a payment, and keep your finances on track.
+        </p>
+
+        <div class="hero-cta-row fade-up">
+          <a href="https://play.google.com/store/apps/details?id=com.wellfield.billday" class="play-badge" target="_blank" rel="noopener">
+            <img src="google-play-badge.svg" alt="Get BillDay on Google Play" height="48" />
+          </a>
+          <span class="hero-trust">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            No account needed · 100% private
+          </span>
+        </div>
+      </div>
+
+      <div class="hero-visual fade-up">
+        <div class="hero-phone">
+          <img src="screenshots/home_overdue.png" alt="BillDay home screen showing upcoming bills, monthly spending total, and an overdue bill alert with Mark as Paid button" width="900" height="1585" />
+        </div>
+
+        <div class="hero-float hero-float-1">
+          <div class="hf-icon hf-icon-amber">🔔</div>
+          <div class="hf-text">
+            <strong>Electricity due in 3 days</strong>
+            <span>€142.00 · Monthly</span>
+          </div>
+        </div>
+
+        <div class="hero-float hero-float-2" style="animation-delay: -3s;">
+          <div class="hf-icon hf-icon-green">✓</div>
+          <div class="hf-text">
+            <strong>Broadband paid</strong>
+            <span>€59.00 · Confirmed</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── VALUE PROPS ─── -->
+  <section class="values" id="features">
+    <div class="values-header">
+      <div class="section-label fade-up">Why BillDay</div>
+      <h2 class="section-heading fade-up">Stop juggling bills.<br/>Start staying ahead.</h2>
+      <p class="section-sub fade-up">Most people manage bills with memory, spreadsheets, or messy banking apps. BillDay gives you one clear view of everything that's due, and makes sure nothing slips through.</p>
+    </div>
+
+    <div class="values-grid">
+      <div class="value-card fade-up">
+        <div class="vc-icon vc-icon-blue">🔔</div>
+        <h3>Never miss a due date</h3>
+        <p>Get reminded days before each bill is due. BillDay sends smart notifications so you can pay on time, every time. No more late fees or surprise charges.</p>
+      </div>
+      <div class="value-card fade-up">
+        <div class="vc-icon vc-icon-green">📊</div>
+        <h3>See where your money goes</h3>
+        <p>Your monthly total, category breakdowns, and spending trends, all in one place. Know exactly how much your household costs and spot changes before they become problems.</p>
+      </div>
+      <div class="value-card fade-up">
+        <div class="vc-icon vc-icon-amber">🔄</div>
+        <h3>Catch renewals before they roll</h3>
+        <p>Insurance, broadband, energy: contracts that auto-renew often cost more. BillDay flags upcoming renewals so you can compare and switch at the right moment.</p>
+      </div>
+      <div class="value-card fade-up">
+        <div class="vc-icon vc-icon-green">✅</div>
+        <h3>Confirm direct debits went through</h3>
+        <p>Scheduled doesn't always mean paid. BillDay prompts you to confirm each direct debit so you always know what actually left your account.</p>
+      </div>
+      <div class="value-card fade-up">
+        <div class="vc-icon vc-icon-blue">📅</div>
+        <h3>Your bills on a calendar</h3>
+        <p>See the full month ahead at a glance. Know which week is heavy, plan around paydays, and avoid the stress of bills catching you off guard.</p>
+      </div>
+      <div class="value-card fade-up">
+        <div class="vc-icon vc-icon-amber">📖</div>
+        <h3>Bill Guide for your country</h3>
+        <p>Helpful context for each bill type: what to expect, how switching works, and where to compare prices. Tailored content for your market.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── HOW IT WORKS ─── -->
+  <section class="how" id="how-it-works">
+    <div class="how-header">
+      <div class="section-label fade-up">How It Works</div>
+      <h2 class="section-heading fade-up">Set it up once.<br/>Stay ahead forever.</h2>
+      <p class="section-sub fade-up">BillDay takes two minutes to set up and saves you hours of mental overhead every month.</p>
+    </div>
+
+    <div class="steps">
+      <div class="step fade-up">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <h3>Add your bills</h3>
+          <p>Electricity, broadband, rent, insurance, subscriptions. Add each bill with its amount, frequency, and due date. Choose from common templates for your country or create your own.</p>
+        </div>
+      </div>
+      <div class="step fade-up">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <h3>Get reminded at the right time</h3>
+          <p>BillDay sends a notification before each bill is due, and you choose how many days in advance. No more calendar juggling or relying on memory.</p>
+        </div>
+      </div>
+      <div class="step fade-up">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <h3>Mark as paid, move on</h3>
+          <p>Tap to confirm each payment. BillDay builds your payment history automatically and shows your running monthly and annual totals.</p>
+        </div>
+      </div>
+      <div class="step fade-up">
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <h3>Spot savings at renewal time</h3>
+          <p>When a contract is up for renewal, BillDay flags it. Compare prices and switch providers, right when it matters most.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── SCREENSHOTS ─── -->
+  <section class="screenshots" id="see-it">
+    <div class="screenshots-header">
+      <div class="section-label fade-up">See It in Action</div>
+      <h2 class="section-heading fade-up">Every bill. One clear view.</h2>
+    </div>
+
+    <div class="screenshots-scroll">
+      <div class="ss-card fade-up">
+        <img src="screenshots/home_overdue.png" alt="BillDay home screen with overdue bill alert, monthly spending summary, and upcoming bills list" width="900" height="1585" loading="lazy" />
+        <div class="ss-caption">Home Screen</div>
+      </div>
+      <div class="ss-card fade-up">
+        <img src="screenshots/insights.png" alt="BillDay spending insights showing category breakdown with percentages and recent cost changes" width="900" height="1925" loading="lazy" />
+        <div class="ss-caption">Spending Insights</div>
+      </div>
+      <div class="ss-card fade-up">
+        <img src="screenshots/calendar.png" alt="BillDay calendar view showing bills marked on their due dates throughout the month with colour-coded categories" width="900" height="1585" loading="lazy" />
+        <div class="ss-caption">Calendar View</div>
+      </div>
+      <div class="ss-card fade-up">
+        <img src="screenshots/bill_list.png" alt="BillDay bill list in dark mode showing bills organised by category including energy, entertainment, and health" width="900" height="1585" loading="lazy" />
+        <div class="ss-caption">My Bills</div>
+      </div>
+      <div class="ss-card fade-up">
+        <img src="screenshots/dark_home.png" alt="BillDay dark mode home screen showing upcoming bills with due dates and payment amounts" width="900" height="1585" loading="lazy" />
+        <div class="ss-caption">Dark Mode</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── COUNTRIES ─── -->
+  <section class="countries" id="countries">
+    <div class="countries-inner">
+      <div class="countries-header">
+        <div class="section-label fade-up">Built for Your Country</div>
+        <h2 class="section-heading fade-up">Quick setup with local bill templates.</h2>
+        <p class="section-sub fade-up">BillDay knows the common bills in your country. Select your location and get pre-filled templates (electricity, gas, insurance, council tax, broadband and more) ready to add in one tap.</p>
+      </div>
+
+      <div class="countries-grid">
+        <div class="country-card fade-up">
+          <img src="screenshots/quick_setup_uk.png" alt="BillDay quick setup showing common UK bills including electricity, gas, council tax, broadband, and TV licence" width="900" height="1585" loading="lazy" />
+          <div class="country-label">
+            <span class="cl-flag">🇬🇧</span>
+            <span class="cl-name">United Kingdom</span>
+            <span class="cl-sub">Council tax, TV licence &amp; more</span>
+          </div>
+        </div>
+        <div class="country-card fade-up">
+          <img src="screenshots/quick_setup_us.png" alt="BillDay quick setup showing common US bills including electricity, water and sewer, property tax, and health insurance" width="900" height="1585" loading="lazy" />
+          <div class="country-label">
+            <span class="cl-flag">🇺🇸</span>
+            <span class="cl-name">United States</span>
+            <span class="cl-sub">Property tax, HOA &amp; more</span>
+          </div>
+        </div>
+        <div class="country-card fade-up">
+          <img src="screenshots/quick_setup_au.png" alt="BillDay quick setup showing common Australian bills including quarterly electricity, gas, water, and council rates" width="900" height="1585" loading="lazy" />
+          <div class="country-label">
+            <span class="cl-flag">🇦🇺</span>
+            <span class="cl-name">Australia</span>
+            <span class="cl-sub">Quarterly billing, NBN &amp; more</span>
+          </div>
+        </div>
+      </div>
+
+      <p class="countries-more fade-up">
+        Available worldwide. Countries including <strong>Ireland, United Kingdom, Australia, United States, Germany, France, Spain, Italy, Netherlands, Sweden, Norway, Poland</strong> and Turkey also get local bill templates, currency defaults, bank holiday calendars, and comparison guides.
+      </p>
+    </div>
+  </section>
+
+  <!-- ─── PRIVACY ─── -->
+  <section class="privacy" id="privacy">
+    <div class="privacy-inner">
+      <div class="privacy-content">
+        <div class="section-label fade-up">Built for Privacy</div>
+        <h2 class="section-heading fade-up">Your bills are<br/>your business.</h2>
+        <p class="section-sub fade-up">
+          BillDay doesn't ask for an account, doesn't connect to your bank, and doesn't upload your data anywhere. Everything stays on your device.
+        </p>
+
+        <div class="privacy-points">
+          <div class="pp-item fade-up">
+            <div class="pp-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg></div>
+            <div>
+              <h4>No account required</h4>
+              <p>Download, open, start adding bills. No email, no password, no sign-up.</p>
+            </div>
+          </div>
+          <div class="pp-item fade-up">
+            <div class="pp-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg></div>
+            <div>
+              <h4>Data stays on your phone</h4>
+              <p>All your bill data is stored locally. No cloud sync, no servers, no third-party access.</p>
+            </div>
+          </div>
+          <div class="pp-item fade-up">
+            <div class="pp-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg></div>
+            <div>
+              <h4>No bank connection</h4>
+              <p>BillDay is a simple tracker, not a banking app. You're always in control of your information.</p>
+            </div>
+          </div>
+          <div class="pp-item fade-up">
+            <div class="pp-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg></div>
+            <div>
+              <h4>Backup &amp; restore on your terms</h4>
+              <p>Export your data as a backup file whenever you want. Restore on a new phone, no account needed.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="privacy-visual fade-up">
+        <div class="privacy-card">
+          <div class="pc-shield">🛡️</div>
+          <div class="pc-title">100% Local-First</div>
+          <div class="pc-desc">Your financial data never leaves your device. That's not a feature, it's the foundation.</div>
+          <div class="pc-badges">
+            <span class="pc-badge">No Cloud</span>
+            <span class="pc-badge">No Login</span>
+            <span class="pc-badge">No Tracking</span>
+            <span class="pc-badge">GDPR Friendly</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── FINAL CTA ─── -->
+  <section class="cta-section">
+    <div class="cta-inner">
+      <h2 class="fade-up">Stay ahead of your bills.</h2>
+      <p class="fade-up">Download BillDay for free and take control of your household spending. Set up in two minutes, stay organised all year.</p>
+      <a href="https://play.google.com/store/apps/details?id=com.wellfield.billday" class="cta-play fade-up" target="_blank" rel="noopener">
+        <img src="google-play-badge.svg" alt="Get BillDay on Google Play" height="52" />
+      </a>
+      <div class="cta-note fade-up">Free · No account required · Android</div>
+    </div>
+  </section>
+
+  <!-- ─── FOOTER ─── -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="icon.png" alt="BillDay" width="28" height="28" />
+        <span>BillDay</span>
+      </div>
+      <div class="footer-links">
+        <a href="https://play.google.com/store/apps/details?id=com.wellfield.billday" target="_blank" rel="noopener">Google Play</a>
+        <a href="https://sites.google.com/view/billday-privacypolicy/home" target="_blank" rel="noopener">Privacy Policy</a>
+        <a href="mailto:riodigital827@gmail.com">Contact</a>
+      </div>
+      <div class="footer-copy">© 2026 Rio Digital Studios. Google Play and the Google Play logo are trademarks of Google LLC.</div>
+    </div>
+  </footer>
+
+  <!-- ─── JS ─── -->
+  <script>
+    // Nav scroll shadow
+    window.addEventListener('scroll', () => {
+      document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 10);
+    });
+
+    // Fade-up on scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+    // Mobile nav
+    const mobileStyle = document.createElement('style');
+    mobileStyle.textContent = `
+      @media (max-width: 900px) {
+        .nav-links.mobile-open {
+          display: flex !important; flex-direction: column;
+          position: absolute; top: 100%; left: 0; right: 0;
+          background: rgba(255,255,255,0.98);
+          backdrop-filter: blur(16px);
+          padding: 20px 24px;
+          border-bottom: 1px solid var(--gray-200);
+          gap: 16px;
+        }
+      }
+    `;
+    document.head.appendChild(mobileStyle);
+  </script>
+</body>
+</html>
