@@ -12,38 +12,31 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --blue:        #1565C0;
-      --blue-light:  #1E88E5;
-      --blue-dark:   #0D3C6E;
-      --gold:        #FFB300;
+      --brand:       #6366F1;
+      --brand-light: #818CF8;
+      --brand-dark:  #4F46E5;
       --green:       #2E7D32;
-      --bg-dark:     #0A1628;
-      --bg-card:     #111F35;
-      --bg-card-hover: #162944;
-      --text-white:  #F5F8FF;
-      --text-muted:  #8BA4C4;
-      --border:      rgba(255,255,255,0.08);
-      --border-light: rgba(255,255,255,0.12);
+      --bg:          #FFFFFF;
+      --bg-subtle:   #F8FAFC;
+      --bg-card:     #FFFFFF;
+      --bg-card-hover: #F8FAFC;
+      --text-primary: #1A1A2E;
+      --text-secondary: #64748B;
+      --border:      rgba(0,0,0,0.08);
+      --border-light: rgba(0,0,0,0.12);
     }
 
     html { scroll-behavior: smooth; }
 
     body {
       font-family: 'Lato', sans-serif;
-      background: var(--bg-dark);
-      color: var(--text-white);
+      background: var(--bg-subtle);
+      color: var(--text-primary);
       overflow-x: hidden;
       line-height: 1.6;
     }
 
-    body::before {
-      content: '';
-      position: fixed; inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-      pointer-events: none; z-index: 0; opacity: 0.4;
-    }
-
-    a { color: var(--blue-light); text-decoration: none; }
+    a { color: var(--brand); text-decoration: none; }
     a:hover { text-decoration: underline; }
 
     .container {
@@ -72,7 +65,7 @@
       overflow: hidden;
       flex-shrink: 0;
       border: 2px solid var(--border-light);
-      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.08);
       background: var(--bg-card);
       display: flex;
       align-items: center;
@@ -89,9 +82,9 @@
       font-weight: 700;
       letter-spacing: 1.5px;
       text-transform: uppercase;
-      color: var(--blue-light);
-      background: rgba(30,136,229,0.12);
-      border: 1px solid rgba(30,136,229,0.25);
+      color: var(--brand);
+      background: rgba(99,102,241,0.08);
+      border: 1px solid rgba(99,102,241,0.2);
       border-radius: 100px;
       padding: 4px 12px;
       margin-bottom: 12px;
@@ -104,11 +97,11 @@
       line-height: 1.1;
       margin-bottom: 8px;
     }
-    .press-header h1 span { color: var(--blue-light); }
+    .press-header h1 span { color: var(--brand); }
     .press-tagline {
       font-size: 18px;
       font-weight: 300;
-      color: var(--text-muted);
+      color: var(--text-secondary);
     }
 
     /* ── SECTION SHARED ── */
@@ -118,7 +111,7 @@
       font-weight: 700;
       letter-spacing: 1.5px;
       text-transform: uppercase;
-      color: var(--blue-light);
+      color: var(--brand);
       margin-bottom: 16px;
     }
     section h2 {
@@ -129,7 +122,7 @@
       margin-bottom: 20px;
     }
     section p {
-      color: var(--text-muted);
+      color: var(--text-secondary);
       font-size: 16px;
       line-height: 1.75;
       max-width: 720px;
@@ -156,13 +149,13 @@
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 1px;
-      color: var(--text-muted);
+      color: var(--text-secondary);
       margin-bottom: 4px;
     }
     .fact-value {
       font-size: 15px;
       font-weight: 400;
-      color: var(--text-white);
+      color: var(--text-primary);
     }
 
     /* ── FEATURE GRAPHIC ── */
@@ -193,7 +186,7 @@
     }
     .screenshot-slot:hover {
       transform: translateY(-4px);
-      box-shadow: 0 12px 32px rgba(0,0,0,0.4);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.12);
     }
     .screenshot-slot img {
       width: 100%;
@@ -208,12 +201,12 @@
       display: block;
       font-size: 12px;
       font-weight: 700;
-      color: var(--text-white);
+      color: var(--text-primary);
       margin-bottom: 2px;
     }
     .screenshot-caption span {
       font-size: 11px;
-      color: var(--text-muted);
+      color: var(--text-secondary);
     }
 
     /* ── LOGO ASSETS ── */
@@ -240,7 +233,7 @@
       height: 80px;
       border-radius: 18px;
       overflow: hidden;
-      background: var(--bg-dark);
+      background: var(--bg-subtle);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -254,7 +247,7 @@
       width: 80px;
       height: 80px;
       border-radius: 18px;
-      background: var(--bg-dark);
+      background: var(--bg-subtle);
       border: 2px dashed var(--border-light);
       display: flex;
       align-items: center;
@@ -272,7 +265,7 @@
     }
     .logo-card .logo-meta span {
       font-size: 12px;
-      color: var(--text-muted);
+      color: var(--text-secondary);
     }
 
     /* ── STORY BLOCK ── */
@@ -286,7 +279,7 @@
     .story-block p {
       font-size: 16px;
       line-height: 1.85;
-      color: var(--text-muted);
+      color: var(--text-secondary);
     }
     .story-block p + p { margin-top: 16px; }
     .story-block .story-attribution {
@@ -294,10 +287,10 @@
       padding-top: 20px;
       border-top: 1px solid var(--border);
       font-size: 14px;
-      color: var(--text-muted);
+      color: var(--text-secondary);
     }
     .story-block .story-attribution strong {
-      color: var(--text-white);
+      color: var(--text-primary);
     }
 
     /* ── KEY FEATURES ── */
@@ -329,12 +322,12 @@
     .feature-item p {
       font-size: 13px;
       line-height: 1.5;
-      color: var(--text-muted);
+      color: var(--text-secondary);
     }
 
     /* ── DOWNLOAD SECTION ── */
     .download-section {
-      background: linear-gradient(135deg, var(--bg-card) 0%, rgba(21,101,192,0.08) 100%);
+      background: linear-gradient(135deg, var(--bg-card) 0%, rgba(99,102,241,0.06) 100%);
       border: 1px solid var(--border);
       border-radius: 16px;
       padding: 40px;
@@ -370,18 +363,18 @@
     }
     .btn:hover { text-decoration: none; }
     .btn-primary {
-      background: var(--blue);
+      background: var(--brand-dark);
       color: white;
     }
-    .btn-primary:hover { background: var(--blue-light); }
+    .btn-primary:hover { background: var(--brand); }
     .btn-secondary {
       background: transparent;
-      color: var(--text-white);
+      color: var(--text-primary);
       border: 1px solid var(--border-light);
     }
     .btn-secondary:hover {
-      background: rgba(255,255,255,0.04);
-      border-color: rgba(255,255,255,0.2);
+      background: rgba(0,0,0,0.03);
+      border-color: rgba(0,0,0,0.2);
     }
     .play-badge { margin-top: 20px; }
     .play-badge img { height: 50px; }
@@ -404,7 +397,7 @@
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 1px;
-      color: var(--text-muted);
+      color: var(--text-secondary);
       margin-bottom: 8px;
     }
     .contact-card a {
@@ -429,13 +422,13 @@
       font-weight: 800;
       margin-bottom: 8px;
     }
-    footer .footer-brand span { color: var(--blue-light); }
+    footer .footer-brand span { color: var(--brand); }
     footer p {
       font-size: 13px;
-      color: var(--text-muted);
+      color: var(--text-secondary);
     }
-    footer a { color: var(--text-muted); }
-    footer a:hover { color: var(--text-white); }
+    footer a { color: var(--text-secondary); }
+    footer a:hover { color: var(--text-primary); }
 
     /* ── RESPONSIVE ── */
     @media (max-width: 900px) {
@@ -462,8 +455,7 @@
   <header class="press-header">
     <div class="press-header-inner">
       <div class="press-header-icon">
-        <!-- Uses the feature graphic cropped as icon; replace with app-icon-512.png when available -->
-        <div style="font-size:48px;">📅</div>
+        <img src="../icon.png" alt="BillDay app icon" />
       </div>
       <div>
         <div class="press-badge">Press Kit</div>
@@ -507,7 +499,7 @@
       </div>
       <div class="fact">
         <div class="fact-label">Package</div>
-        <div class="fact-value"><code style="font-size:13px;background:rgba(255,255,255,0.06);padding:2px 8px;border-radius:4px;">com.wellfield.billday</code></div>
+        <div class="fact-value"><code style="font-size:13px;background:rgba(0,0,0,0.05);padding:2px 8px;border-radius:4px;">com.wellfield.billday</code></div>
       </div>
     </div>
   </section>
@@ -668,8 +660,7 @@
 
     <div class="logos-row">
       <div class="logo-card">
-        <div class="logo-preview-placeholder">📅</div>
-        <!-- REPLACE with: <div class="logo-preview"><img src="../assets/press/app-icon-512.png" alt="BillDay app icon"></div> -->
+        <div class="logo-preview"><img src="../icon.png" alt="BillDay app icon"></div>
         <div class="logo-meta">
           <strong>App Icon</strong>
           <span>512 &times; 512px &middot; PNG</span>
@@ -693,8 +684,8 @@
     <p>A short screen-recording demo of BillDay in action. Suitable for embedding in articles or social posts.</p>
     <div style="background:var(--bg-card); border:2px dashed var(--border-light); border-radius:16px; padding:60px; text-align:center; margin-top:20px;">
       <div style="font-size:40px; margin-bottom:12px; opacity:0.4;">▶️</div>
-      <p style="font-size:14px; color:var(--text-muted);">Video coming soon</p>
-      <p style="font-size:12px; color:var(--text-muted); opacity:0.6; margin-top:4px;">
+      <p style="font-size:14px; color:var(--text-secondary);">Video coming soon</p>
+      <p style="font-size:12px; color:var(--text-secondary); opacity:0.6; margin-top:4px;">
         <!-- REPLACE this block with a YouTube embed when ready -->
         Short demo video will be added here
       </p>
@@ -711,6 +702,11 @@
         <a href="../assets/press/BillDay-Press-Kit.zip" class="btn btn-primary">
           ⬇ Download ZIP
         </a>
+        <a href="https://play.google.com/store/apps/details?id=com.wellfield.billday&utm_source=press&utm_medium=presskit" class="btn btn-secondary" target="_blank" rel="noopener">
+          📱 View on Google Play
+        </a>
+      </div>
+      <div class="play-badge">
         <a href="https://play.google.com/store/apps/details?id=com.wellfield.billday&utm_source=press&utm_medium=presskit" target="_blank" rel="noopener">
           <img src="../google-play-badge.svg" alt="Get it on Google Play" />
         </a>
