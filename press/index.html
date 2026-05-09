@@ -7,451 +7,151 @@
   <meta name="description" content="Press kit for BillDay, the privacy-first bill tracking and reminder app for Android. Screenshots, logos, fact sheet, and founder story." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/png" href="../icon.png" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
-      --brand:       #6366F1;
-      --brand-light: #818CF8;
-      --brand-dark:  #4F46E5;
-      --green:       #2E7D32;
-      --bg:          #FFFFFF;
-      --bg-subtle:   #F8FAFC;
-      --bg-card:     #FFFFFF;
-      --bg-card-hover: #F8FAFC;
-      --text-primary: #1A1A2E;
-      --text-secondary: #64748B;
-      --border:      rgba(0,0,0,0.08);
-      --border-light: rgba(0,0,0,0.12);
+      --blue-900: #0B2545; --blue-700: #1565C0; --blue-600: #1976D2;
+      --blue-400: #42A5F5; --blue-50: #E3F2FD; --white: #FFFFFF;
+      --gray-50: #F8FAFC; --gray-100: #F1F5F9; --gray-200: #E2E8F0;
+      --gray-400: #94A3B8; --gray-500: #64748B; --gray-600: #475569;
+      --gray-800: #1E293B; --gray-900: #0F172A;
+      --radius: 12px; --radius-lg: 20px;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
+      --shadow-md: 0 4px 16px rgba(0,0,0,0.08);
     }
-
     html { scroll-behavior: smooth; }
-
-    body {
-      font-family: 'Lato', sans-serif;
-      background: var(--bg-subtle);
-      color: var(--text-primary);
-      overflow-x: hidden;
-      line-height: 1.6;
-    }
-
-    a { color: var(--brand); text-decoration: none; }
+    body { font-family: 'DM Sans', system-ui, sans-serif; color: var(--gray-800); background: var(--white); overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+    a { color: var(--blue-700); text-decoration: none; }
     a:hover { text-decoration: underline; }
+    .container { max-width: 960px; margin: 0 auto; padding: 0 24px; }
 
-    .container {
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 0 32px;
-      position: relative;
-      z-index: 1;
-    }
+    .nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.92); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-bottom: 1px solid var(--gray-200); }
+    .nav-inner { max-width: 960px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 14px 24px; }
+    .nav-brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .nav-brand:hover { text-decoration: none; }
+    .nav-logo { width: 36px; height: 36px; border-radius: 8px; }
+    .nav-name { font-size: 20px; font-weight: 700; color: var(--gray-900); letter-spacing: -0.3px; }
+    .nav-name em { color: var(--blue-700); font-style: normal; }
+    .nav-links { display: flex; align-items: center; gap: 24px; }
+    .nav-links a { font-size: 14px; font-weight: 500; color: var(--gray-600); text-decoration: none; }
+    .nav-links a:hover { color: var(--blue-700); text-decoration: none; }
 
-    /* ── HEADER ── */
-    .press-header {
-      padding: 60px 0 48px;
-      border-bottom: 1px solid var(--border);
-      margin-bottom: 56px;
-    }
-    .press-header-inner {
-      display: flex;
-      align-items: center;
-      gap: 40px;
-    }
-    .press-header-icon {
-      width: 100px;
-      height: 100px;
-      border-radius: 22px;
-      overflow: hidden;
-      flex-shrink: 0;
-      border: 2px solid var(--border-light);
-      box-shadow: 0 8px 32px rgba(0,0,0,0.08);
-      background: var(--bg-card);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .press-header-icon img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-    .press-badge {
-      display: inline-block;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      color: var(--brand);
-      background: rgba(99,102,241,0.08);
-      border: 1px solid rgba(99,102,241,0.2);
-      border-radius: 100px;
-      padding: 4px 12px;
-      margin-bottom: 12px;
-    }
-    .press-header h1 {
-      font-family: 'Syne', sans-serif;
-      font-size: 42px;
-      font-weight: 800;
-      letter-spacing: -1.5px;
-      line-height: 1.1;
-      margin-bottom: 8px;
-    }
-    .press-header h1 span { color: var(--brand); }
-    .press-tagline {
-      font-size: 18px;
-      font-weight: 300;
-      color: var(--text-secondary);
-    }
+    .press-header { padding: 60px 0 48px; border-bottom: 1px solid var(--gray-200); margin-bottom: 56px; }
+    .press-header-inner { display: flex; align-items: center; gap: 32px; }
+    .press-header-icon { width: 88px; height: 88px; border-radius: 18px; overflow: hidden; flex-shrink: 0; box-shadow: var(--shadow-md); }
+    .press-header-icon img { width: 100%; height: 100%; object-fit: cover; }
+    .press-badge { display: inline-block; font-size: 12px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--blue-700); background: rgba(21,101,192,0.08); border-radius: 100px; padding: 5px 14px; margin-bottom: 10px; }
+    .press-header h1 { font-size: 36px; font-weight: 700; color: var(--gray-900); letter-spacing: -0.5px; line-height: 1.1; margin-bottom: 8px; }
+    .press-header h1 em { color: var(--blue-700); font-style: normal; }
+    .press-tagline { font-size: 17px; color: var(--gray-500); line-height: 1.6; }
 
-    /* ── SECTION SHARED ── */
     section { margin-bottom: 56px; }
-    .section-label {
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      color: var(--brand);
-      margin-bottom: 16px;
-    }
-    section h2 {
-      font-family: 'Syne', sans-serif;
-      font-size: 26px;
-      font-weight: 800;
-      letter-spacing: -0.5px;
-      margin-bottom: 20px;
-    }
-    section p {
-      color: var(--text-secondary);
-      font-size: 16px;
-      line-height: 1.75;
-      max-width: 720px;
-    }
+    .section-label { font-size: 13px; font-weight: 600; color: var(--blue-700); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 12px; }
+    section h2 { font-size: 24px; font-weight: 700; color: var(--gray-900); letter-spacing: -0.3px; margin-bottom: 16px; }
+    section p { color: var(--gray-500); font-size: 15px; line-height: 1.75; max-width: 720px; }
     section p + p { margin-top: 12px; }
 
-    /* ── FACT SHEET ── */
-    .facts-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1px;
-      background: var(--border);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      overflow: hidden;
-      margin-top: 20px;
-    }
-    .fact {
-      background: var(--bg-card);
-      padding: 20px 24px;
-    }
-    .fact-label {
-      font-size: 11px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      color: var(--text-secondary);
-      margin-bottom: 4px;
-    }
-    .fact-value {
-      font-size: 15px;
-      font-weight: 400;
-      color: var(--text-primary);
-    }
+    .facts-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--gray-200); border: 1px solid var(--gray-200); border-radius: var(--radius-lg); overflow: hidden; margin-top: 20px; }
+    .fact { background: var(--white); padding: 20px 24px; }
+    .fact-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: var(--gray-400); margin-bottom: 4px; }
+    .fact-value { font-size: 15px; color: var(--gray-800); }
 
-    /* ── FEATURE GRAPHIC ── */
-    .feature-graphic {
-      margin-top: 20px;
-      border-radius: 16px;
-      overflow: hidden;
-      border: 1px solid var(--border);
-    }
-    .feature-graphic img {
-      width: 100%;
-      display: block;
-    }
+    .feature-graphic { margin-top: 20px; border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--gray-200); box-shadow: var(--shadow-sm); }
+    .feature-graphic img { width: 100%; display: block; }
 
-    /* ── SCREENSHOTS GRID ── */
-    .screenshots-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 16px;
-      margin-top: 20px;
-    }
-    .screenshot-slot {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      overflow: hidden;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-    .screenshot-slot:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 32px rgba(0,0,0,0.12);
-    }
-    .screenshot-slot img {
-      width: 100%;
-      display: block;
-      border-radius: 15px;
-    }
-    .screenshot-caption {
-      padding: 10px 12px;
-      text-align: center;
-    }
-    .screenshot-caption strong {
-      display: block;
-      font-size: 12px;
-      font-weight: 700;
-      color: var(--text-primary);
-      margin-bottom: 2px;
-    }
-    .screenshot-caption span {
-      font-size: 11px;
-      color: var(--text-secondary);
-    }
+    .screenshots-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 20px; }
+    .screenshot-slot { background: var(--gray-100); border: 1px solid var(--gray-200); border-radius: var(--radius-lg); overflow: hidden; transition: transform 0.3s, box-shadow 0.3s; }
+    .screenshot-slot:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+    .screenshot-slot img { width: 100%; display: block; }
+    .screenshot-caption { padding: 10px 12px; text-align: center; background: var(--white); border-top: 1px solid var(--gray-200); }
+    .screenshot-caption strong { display: block; font-size: 12px; font-weight: 600; color: var(--gray-800); margin-bottom: 2px; }
+    .screenshot-caption span { font-size: 11px; color: var(--gray-500); }
 
-    /* ── LOGO ASSETS ── */
-    .logos-row {
-      display: flex;
-      gap: 24px;
-      flex-wrap: wrap;
-      margin-top: 20px;
-    }
-    .logo-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 32px 40px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 16px;
-      transition: background 0.2s;
-    }
-    .logo-card:hover { background: var(--bg-card-hover); }
-    .logo-card .logo-preview {
-      width: 80px;
-      height: 80px;
-      border-radius: 18px;
-      overflow: hidden;
-      background: var(--bg-subtle);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .logo-card .logo-preview img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-    }
-    .logo-card .logo-preview-placeholder {
-      width: 80px;
-      height: 80px;
-      border-radius: 18px;
-      background: var(--bg-subtle);
-      border: 2px dashed var(--border-light);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 28px;
-      opacity: 0.4;
-    }
-    .logo-card .logo-meta {
-      text-align: center;
-    }
-    .logo-card .logo-meta strong {
-      display: block;
-      font-size: 14px;
-      margin-bottom: 2px;
-    }
-    .logo-card .logo-meta span {
-      font-size: 12px;
-      color: var(--text-secondary);
-    }
+    .features-list { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 20px; }
+    .feature-item { padding: 20px 24px; border-radius: var(--radius); border: 1px solid var(--gray-200); display: flex; gap: 14px; align-items: flex-start; transition: border-color 0.3s; }
+    .feature-item:hover { border-color: var(--blue-400); }
+    .feature-icon { width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; background: rgba(21,101,192,0.08); }
+    .feature-item h4 { font-size: 14px; font-weight: 700; color: var(--gray-900); margin-bottom: 4px; }
+    .feature-item p { font-size: 13px; line-height: 1.5; color: var(--gray-500); }
 
-    /* ── STORY BLOCK ── */
-    .story-block {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 40px;
-      margin-top: 20px;
-    }
-    .story-block p {
-      font-size: 16px;
-      line-height: 1.85;
-      color: var(--text-secondary);
-    }
+    .story-block { background: var(--gray-50); border: 1px solid var(--gray-200); border-radius: var(--radius-lg); padding: 40px; margin-top: 20px; }
+    .story-block p { font-size: 15px; line-height: 1.85; color: var(--gray-600); }
     .story-block p + p { margin-top: 16px; }
-    .story-block .story-attribution {
-      margin-top: 24px;
-      padding-top: 20px;
-      border-top: 1px solid var(--border);
-      font-size: 14px;
-      color: var(--text-secondary);
-    }
-    .story-block .story-attribution strong {
-      color: var(--text-primary);
-    }
+    .story-block .story-attribution { margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--gray-200); font-size: 14px; color: var(--gray-500); }
+    .story-block .story-attribution strong { color: var(--gray-900); }
 
-    /* ── KEY FEATURES ── */
-    .features-list {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-      margin-top: 20px;
-    }
-    .feature-item {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 20px 24px;
-      display: flex;
-      gap: 14px;
-      align-items: flex-start;
-    }
-    .feature-icon {
-      font-size: 22px;
-      flex-shrink: 0;
-      margin-top: 2px;
-    }
-    .feature-item h4 {
-      font-size: 14px;
-      font-weight: 700;
-      margin-bottom: 4px;
-    }
-    .feature-item p {
-      font-size: 13px;
-      line-height: 1.5;
-      color: var(--text-secondary);
-    }
+    .logos-row { display: flex; gap: 24px; flex-wrap: wrap; margin-top: 20px; }
+    .logo-card { background: var(--gray-50); border: 1px solid var(--gray-200); border-radius: var(--radius-lg); padding: 32px 40px; display: flex; flex-direction: column; align-items: center; gap: 16px; }
+    .logo-preview { width: 80px; height: 80px; border-radius: 18px; overflow: hidden; }
+    .logo-preview img { width: 100%; height: 100%; object-fit: contain; }
+    .logo-preview-placeholder { width: 80px; height: 80px; border-radius: 18px; background: var(--gray-100); border: 2px dashed var(--gray-200); display: flex; align-items: center; justify-content: center; font-size: 28px; color: var(--gray-400); }
+    .logo-meta { text-align: center; }
+    .logo-meta strong { display: block; font-size: 14px; color: var(--gray-800); margin-bottom: 2px; }
+    .logo-meta span { font-size: 12px; color: var(--gray-500); }
 
-    /* ── DOWNLOAD SECTION ── */
-    .download-section {
-      background: linear-gradient(135deg, var(--bg-card) 0%, rgba(99,102,241,0.06) 100%);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 40px;
-      text-align: center;
-      margin-top: 20px;
-    }
-    .download-section h3 {
-      font-family: 'Syne', sans-serif;
-      font-size: 22px;
-      font-weight: 800;
-      margin-bottom: 12px;
-    }
-    .download-section p {
-      margin: 0 auto 28px;
-      text-align: center;
-    }
-    .download-buttons {
-      display: flex;
-      gap: 16px;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 14px 28px;
-      border-radius: 10px;
-      font-size: 14px;
-      font-weight: 700;
-      text-decoration: none;
-      transition: all 0.2s;
-    }
+    .download-section { background: linear-gradient(135deg, var(--gray-50) 0%, rgba(21,101,192,0.04) 100%); border: 1px solid var(--gray-200); border-radius: var(--radius-lg); padding: 40px; text-align: center; margin-top: 20px; }
+    .download-section h3 { font-size: 22px; font-weight: 700; color: var(--gray-900); margin-bottom: 12px; }
+    .download-section p { margin: 0 auto 28px; text-align: center; }
+    .download-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; border-radius: 8px; font-size: 14px; font-weight: 600; text-decoration: none; transition: all 0.2s; }
     .btn:hover { text-decoration: none; }
-    .btn-primary {
-      background: var(--brand-dark);
-      color: white;
-    }
-    .btn-primary:hover { background: var(--brand); }
-    .btn-secondary {
-      background: transparent;
-      color: var(--text-primary);
-      border: 1px solid var(--border-light);
-    }
-    .btn-secondary:hover {
-      background: rgba(0,0,0,0.03);
-      border-color: rgba(0,0,0,0.2);
-    }
-    .play-badge { margin-top: 20px; }
-    .play-badge img { height: 50px; }
+    .btn-primary { background: var(--blue-700); color: white; }
+    .btn-primary:hover { background: var(--blue-600); }
+    .btn-secondary { background: var(--white); color: var(--gray-800); border: 1px solid var(--gray-200); }
+    .btn-secondary:hover { border-color: var(--gray-400); }
+    .play-badge-small { margin-top: 20px; }
+    .play-badge-small img { height: 44px; }
 
-    /* ── CONTACT ── */
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-      margin-top: 20px;
-    }
-    .contact-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 24px;
-    }
-    .contact-card .contact-type {
-      font-size: 11px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      color: var(--text-secondary);
-      margin-bottom: 8px;
-    }
-    .contact-card a {
-      font-size: 16px;
-      font-weight: 700;
-    }
-    .contact-card p {
-      font-size: 13px;
-      margin-top: 4px;
-    }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 20px; }
+    .contact-card { border: 1px solid var(--gray-200); border-radius: var(--radius); padding: 24px; }
+    .contact-card .contact-type { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: var(--gray-400); margin-bottom: 8px; }
+    .contact-card a { font-size: 16px; font-weight: 700; }
+    .contact-card p { font-size: 13px; margin-top: 4px; }
 
-    /* ── FOOTER ── */
-    footer {
-      margin-top: 64px;
-      padding: 32px 0;
-      border-top: 1px solid var(--border);
-      text-align: center;
-    }
-    footer .footer-brand {
-      font-family: 'Syne', sans-serif;
-      font-size: 18px;
-      font-weight: 800;
-      margin-bottom: 8px;
-    }
-    footer .footer-brand span { color: var(--brand); }
-    footer p {
-      font-size: 13px;
-      color: var(--text-secondary);
-    }
-    footer a { color: var(--text-secondary); }
-    footer a:hover { color: var(--text-primary); }
+    .video-placeholder { background: var(--gray-50); border: 2px dashed var(--gray-200); border-radius: var(--radius-lg); padding: 60px; text-align: center; margin-top: 20px; }
 
-    /* ── RESPONSIVE ── */
-    @media (max-width: 900px) {
-      .screenshots-grid { grid-template-columns: repeat(3, 1fr); }
-    }
+    footer { margin-top: 64px; padding: 32px 0; border-top: 1px solid var(--gray-200); text-align: center; }
+    .footer-brand { display: inline-flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+    .footer-brand img { width: 24px; height: 24px; border-radius: 6px; }
+    .footer-brand span { font-size: 15px; font-weight: 700; color: var(--gray-900); }
+    .footer-brand em { color: var(--blue-700); font-style: normal; }
+    footer p { font-size: 13px; color: var(--gray-500); }
+    footer a { color: var(--gray-500); }
+    footer a:hover { color: var(--blue-700); }
+
+    @media (max-width: 900px) { .screenshots-grid { grid-template-columns: repeat(3, 1fr); } }
     @media (max-width: 700px) {
       .press-header-inner { flex-direction: column; gap: 20px; text-align: center; }
-      .press-header h1 { font-size: 32px; }
-      .facts-grid { grid-template-columns: 1fr; }
-      .features-list { grid-template-columns: 1fr; }
-      .contact-grid { grid-template-columns: 1fr; }
+      .press-header h1 { font-size: 28px; }
+      .facts-grid, .features-list, .contact-grid { grid-template-columns: 1fr; }
       .screenshots-grid { grid-template-columns: repeat(2, 1fr); }
       .logos-row { justify-content: center; }
-      .story-block { padding: 24px; }
-      .download-section { padding: 28px; }
+      .story-block, .download-section { padding: 24px; }
+      .nav-links { display: none; }
     }
   </style>
 </head>
 <body>
 
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="../" class="nav-brand">
+        <img src="../icon.png" alt="BillDay app icon" class="nav-logo" width="36" height="36" />
+        <span class="nav-name">Bill<em>Day</em></span>
+      </a>
+      <div class="nav-links">
+        <a href="../#features">Features</a>
+        <a href="../#see-it">Screenshots</a>
+        <a href="../#privacy">Privacy</a>
+        <a href="https://play.google.com/store/apps/details?id=com.wellfield.billday" target="_blank" rel="noopener">Get the App</a>
+      </div>
+    </div>
+  </nav>
+
 <div class="container">
 
-  <!-- ═══════════════ HEADER ═══════════════ -->
   <header class="press-header">
     <div class="press-header-inner">
       <div class="press-header-icon">
@@ -459,109 +159,45 @@
       </div>
       <div>
         <div class="press-badge">Press Kit</div>
-        <h1>Bill<span>Day</span></h1>
+        <h1>Bill<em>Day</em></h1>
         <p class="press-tagline">Privacy-first bill tracking &amp; reminders for Android.<br/>No account. No cloud. No bank access.</p>
       </div>
     </div>
   </header>
 
-  <!-- ═══════════════ FACT SHEET ═══════════════ -->
   <section>
     <div class="section-label">Fact Sheet</div>
     <div class="facts-grid">
-      <div class="fact">
-        <div class="fact-label">Developer</div>
-        <div class="fact-value">Edward &middot; Rio Digital Studios</div>
-      </div>
-      <div class="fact">
-        <div class="fact-label">Release</div>
-        <div class="fact-value">2026</div>
-      </div>
-      <div class="fact">
-        <div class="fact-label">Based</div>
-        <div class="fact-value">Ireland</div>
-      </div>
-      <div class="fact">
-        <div class="fact-label">Platform</div>
-        <div class="fact-value">Android (Google Play)</div>
-      </div>
-      <div class="fact">
-        <div class="fact-label">Price</div>
-        <div class="fact-value">Free (ad-supported)</div>
-      </div>
-      <div class="fact">
-        <div class="fact-label">Languages</div>
-        <div class="fact-value">12 (EN, DE, ES, FR, IT, NL, PL, SV, NB, TR, PT-BR, EN-ZA)</div>
-      </div>
-      <div class="fact">
-        <div class="fact-label">Markets with Bill Guides</div>
-        <div class="fact-value">Ireland, UK, Austria, Germany, South Africa, Australia, US, Canada &amp; more</div>
-      </div>
-      <div class="fact">
-        <div class="fact-label">Package</div>
-        <div class="fact-value"><code style="font-size:13px;background:rgba(0,0,0,0.05);padding:2px 8px;border-radius:4px;">com.wellfield.billday</code></div>
-      </div>
+      <div class="fact"><div class="fact-label">Developer</div><div class="fact-value">Edward &middot; Rio Digital Studios</div></div>
+      <div class="fact"><div class="fact-label">Release</div><div class="fact-value">2026</div></div>
+      <div class="fact"><div class="fact-label">Based</div><div class="fact-value">Ireland</div></div>
+      <div class="fact"><div class="fact-label">Platform</div><div class="fact-value">Android (Google Play)</div></div>
+      <div class="fact"><div class="fact-label">Price</div><div class="fact-value">Free (ad-supported)</div></div>
+      <div class="fact"><div class="fact-label">Languages</div><div class="fact-value">12 (EN, DE, ES, FR, IT, NL, PL, SV, NB, TR, PT-BR, EN-ZA)</div></div>
+      <div class="fact"><div class="fact-label">Markets with Bill Guides</div><div class="fact-value">Ireland, UK, Austria, Germany, South Africa, Australia, US, Canada &amp; more</div></div>
+      <div class="fact"><div class="fact-label">Package</div><div class="fact-value"><code style="font-size:13px;background:var(--gray-100);padding:2px 8px;border-radius:4px;">com.wellfield.billday</code></div></div>
     </div>
   </section>
 
-  <!-- ═══════════════ ONE-LINER ═══════════════ -->
   <section>
     <div class="section-label">Boilerplate</div>
     <h2>What is BillDay?</h2>
     <p>BillDay is a privacy-first bill tracking and reminder app for Android. It helps households stay on top of recurring bills with timely reminders, spending insights, and country-specific comparison guides — all without requiring an account, cloud sync, or bank access. Everything stays on the device.</p>
   </section>
 
-  <!-- ═══════════════ KEY FEATURES ═══════════════ -->
   <section>
     <div class="section-label">Key Features</div>
     <h2>What makes BillDay different</h2>
     <div class="features-list">
-      <div class="feature-item">
-        <div class="feature-icon">🔒</div>
-        <div>
-          <h4>100% Local Storage</h4>
-          <p>All data stored on-device via SQLite. No servers, no cloud, no data transmitted anywhere.</p>
-        </div>
-      </div>
-      <div class="feature-item">
-        <div class="feature-icon">👤</div>
-        <div>
-          <h4>No Account Required</h4>
-          <p>Install and start tracking bills immediately. No sign-up, no email, no bank login.</p>
-        </div>
-      </div>
-      <div class="feature-item">
-        <div class="feature-icon">🔔</div>
-        <div>
-          <h4>Smart Reminders</h4>
-          <p>Configurable notifications before bills are due — daily summary, individual alerts, or both.</p>
-        </div>
-      </div>
-      <div class="feature-item">
-        <div class="feature-icon">📊</div>
-        <div>
-          <h4>Spending Insights</h4>
-          <p>Monthly breakdowns, category analysis, cost changes, and upcoming payment projections.</p>
-        </div>
-      </div>
-      <div class="feature-item">
-        <div class="feature-icon">📋</div>
-        <div>
-          <h4>Bill Guide</h4>
-          <p>Country-specific comparison guides with real local providers (energy, broadband, insurance, mobile).</p>
-        </div>
-      </div>
-      <div class="feature-item">
-        <div class="feature-icon">🌍</div>
-        <div>
-          <h4>12 Languages, 10+ Markets</h4>
-          <p>Localised for Ireland, UK, Austria, Germany, South Africa, Australia, US, Canada, and growing.</p>
-        </div>
-      </div>
+      <div class="feature-item"><div class="feature-icon">🔒</div><div><h4>100% Local Storage</h4><p>All data stored on-device via SQLite. No servers, no cloud, no data transmitted anywhere.</p></div></div>
+      <div class="feature-item"><div class="feature-icon">👤</div><div><h4>No Account Required</h4><p>Install and start tracking bills immediately. No sign-up, no email, no bank login.</p></div></div>
+      <div class="feature-item"><div class="feature-icon">🔔</div><div><h4>Smart Reminders</h4><p>Configurable notifications before bills are due — daily summary, individual alerts, or both.</p></div></div>
+      <div class="feature-item"><div class="feature-icon">📊</div><div><h4>Spending Insights</h4><p>Monthly breakdowns, category analysis, cost changes, and upcoming payment projections.</p></div></div>
+      <div class="feature-item"><div class="feature-icon">📋</div><div><h4>Bill Guide</h4><p>Country-specific comparison guides with real local providers (energy, broadband, insurance, mobile).</p></div></div>
+      <div class="feature-item"><div class="feature-icon">🌍</div><div><h4>12 Languages, 10+ Markets</h4><p>Localised for Ireland, UK, Austria, Germany, South Africa, Australia, US, Canada, and growing.</p></div></div>
     </div>
   </section>
 
-  <!-- ═══════════════ FOUNDER STORY ═══════════════ -->
   <section>
     <div class="section-label">The Story</div>
     <h2>Why BillDay exists</h2>
@@ -569,177 +205,77 @@
       <p>I'm Edward, a solo Android developer from Ireland. I built BillDay because I kept getting caught out by bills — not because I couldn't afford them, but because they'd land on random dates across six different providers and I'd miss the odd one. Every bill tracker I tried wanted my bank login, a monthly subscription, or an account I'd never use again.</p>
       <p>So I built what I actually wanted: a simple app that tracks when bills are due and reminds you before they hit. No account creation. No cloud sync. No data harvesting. Everything stays on your phone.</p>
       <p>BillDay now supports 12 languages and has bill guides for Ireland, the UK, Austria, South Africa, and more — with real local providers, not generic templates. It's free, ad-supported, and I'm the only person who works on it.</p>
-      <div class="story-attribution">
-        <strong>Edward</strong> &middot; Founder &amp; Developer, Rio Digital Studios &middot; Ireland
-      </div>
+      <div class="story-attribution"><strong>Edward</strong> &middot; Founder &amp; Developer, Rio Digital Studios &middot; Ireland</div>
     </div>
   </section>
 
-  <!-- ═══════════════ FEATURE GRAPHIC ═══════════════ -->
   <section>
     <div class="section-label">Feature Graphic</div>
     <h2>Google Play feature graphic</h2>
     <p>1024 &times; 500px — suitable for Play Store, press articles, and social media headers.</p>
-    <div class="feature-graphic">
-      <img src="../assets/press/billday_feature_graphic.png"
-           alt="BillDay feature graphic — calendar icon with bill category symbols and tagline: Your bills, always on time." />
-    </div>
+    <div class="feature-graphic"><img src="../assets/press/billday_feature_graphic.png" alt="BillDay feature graphic — calendar icon with bill category symbols and tagline: Your bills, always on time." /></div>
   </section>
 
-  <!-- ═══════════════ SCREENSHOTS ═══════════════ -->
   <section>
     <div class="section-label">Screenshots</div>
     <h2>App screenshots</h2>
     <p>Phone-framed, high-resolution screenshots. Right-click any image to save, or download the full set below.</p>
-
     <div class="screenshots-grid">
-      <div class="screenshot-slot">
-        <img src="../assets/press/US_02.png" alt="BillDay home screen showing overdue bills" />
-        <div class="screenshot-caption">
-          <strong>Overdue Alerts</strong>
-          <span>Home screen with overdue bills highlighted</span>
-        </div>
-      </div>
-      <div class="screenshot-slot">
-        <img src="../assets/press/US_03.png" alt="BillDay home screen with all bills up to date" />
-        <div class="screenshot-caption">
-          <strong>All Up to Date</strong>
-          <span>Home screen with all bills current</span>
-        </div>
-      </div>
-      <div class="screenshot-slot">
-        <img src="../assets/press/US_04.png" alt="BillDay calendar view showing monthly bill schedule" />
-        <div class="screenshot-caption">
-          <strong>Calendar View</strong>
-          <span>Monthly bill schedule at a glance</span>
-        </div>
-      </div>
-      <div class="screenshot-slot">
-        <img src="../assets/press/US_05.png" alt="BillDay deep dive spending insights" />
-        <div class="screenshot-caption">
-          <strong>Deep Dive Insights</strong>
-          <span>Detailed spending analysis</span>
-        </div>
-      </div>
-      <div class="screenshot-slot">
-        <img src="../assets/press/US_06.png" alt="BillDay recent cost changes view" />
-        <div class="screenshot-caption">
-          <strong>Cost Changes</strong>
-          <span>Track recent bill increases</span>
-        </div>
-      </div>
-      <div class="screenshot-slot">
-        <img src="../assets/press/US_07.png" alt="BillDay save on this bill comparison feature" />
-        <div class="screenshot-caption">
-          <strong>Save on This Bill</strong>
-          <span>Provider comparison suggestions</span>
-        </div>
-      </div>
-      <div class="screenshot-slot">
-        <img src="../assets/press/US_08.png" alt="BillDay upcoming renewals in insights" />
-        <div class="screenshot-caption">
-          <strong>Upcoming Renewals</strong>
-          <span>Renewal dates and projections</span>
-        </div>
-      </div>
-      <div class="screenshot-slot">
-        <img src="../assets/press/US_09.png" alt="BillDay at a glance insights summary" />
-        <div class="screenshot-caption">
-          <strong>At a Glance</strong>
-          <span>Monthly spending overview</span>
-        </div>
-      </div>
+      <div class="screenshot-slot"><img src="../assets/press/US_02.png" alt="BillDay home screen showing overdue bills" /><div class="screenshot-caption"><strong>Overdue Alerts</strong><span>Home screen with overdue bills</span></div></div>
+      <div class="screenshot-slot"><img src="../assets/press/US_03.png" alt="BillDay home screen with all bills up to date" /><div class="screenshot-caption"><strong>All Up to Date</strong><span>Home screen with all bills current</span></div></div>
+      <div class="screenshot-slot"><img src="../assets/press/US_04.png" alt="BillDay calendar view" /><div class="screenshot-caption"><strong>Calendar View</strong><span>Monthly bill schedule at a glance</span></div></div>
+      <div class="screenshot-slot"><img src="../assets/press/US_05.png" alt="BillDay deep dive spending insights" /><div class="screenshot-caption"><strong>Deep Dive Insights</strong><span>Detailed spending analysis</span></div></div>
+      <div class="screenshot-slot"><img src="../assets/press/US_06.png" alt="BillDay recent cost changes" /><div class="screenshot-caption"><strong>Cost Changes</strong><span>Track recent bill increases</span></div></div>
+      <div class="screenshot-slot"><img src="../assets/press/US_07.png" alt="BillDay save on this bill" /><div class="screenshot-caption"><strong>Save on This Bill</strong><span>Provider comparison suggestions</span></div></div>
+      <div class="screenshot-slot"><img src="../assets/press/US_08.png" alt="BillDay upcoming renewals" /><div class="screenshot-caption"><strong>Upcoming Renewals</strong><span>Renewal dates and projections</span></div></div>
+      <div class="screenshot-slot"><img src="../assets/press/US_09.png" alt="BillDay at a glance insights" /><div class="screenshot-caption"><strong>At a Glance</strong><span>Monthly spending overview</span></div></div>
     </div>
   </section>
 
-  <!-- ═══════════════ LOGOS & ICON ═══════════════ -->
   <section>
     <div class="section-label">Brand Assets</div>
     <h2>App icon &amp; logos</h2>
     <p>High-resolution assets for editorial use. Please do not modify, crop, or recolour.</p>
-
     <div class="logos-row">
-      <div class="logo-card">
-        <div class="logo-preview"><img src="../icon.png" alt="BillDay app icon"></div>
-        <div class="logo-meta">
-          <strong>App Icon</strong>
-          <span>512 &times; 512px &middot; PNG</span>
-        </div>
-      </div>
-      <div class="logo-card">
-        <div class="logo-preview-placeholder">R</div>
-        <!-- REPLACE with: <div class="logo-preview"><img src="../assets/press/rio-digital-logo.png" alt="Rio Digital Studios logo"></div> -->
-        <div class="logo-meta">
-          <strong>Rio Digital Studios</strong>
-          <span>Brand logo &middot; PNG</span>
-        </div>
-      </div>
+      <div class="logo-card"><div class="logo-preview"><img src="../icon.png" alt="BillDay app icon"></div><div class="logo-meta"><strong>App Icon</strong><span>512 &times; 512px &middot; PNG</span></div></div>
+      <div class="logo-card"><div class="logo-preview-placeholder">R</div><div class="logo-meta"><strong>Rio Digital Studios</strong><span>Brand logo &middot; PNG</span></div></div>
     </div>
   </section>
 
-  <!-- ═══════════════ PROMO VIDEO ═══════════════ -->
   <section>
     <div class="section-label">Video</div>
     <h2>Promo video</h2>
     <p>A short screen-recording demo of BillDay in action. Suitable for embedding in articles or social posts.</p>
-    <div style="background:var(--bg-card); border:2px dashed var(--border-light); border-radius:16px; padding:60px; text-align:center; margin-top:20px;">
-      <div style="font-size:40px; margin-bottom:12px; opacity:0.4;">▶️</div>
-      <p style="font-size:14px; color:var(--text-secondary);">Video coming soon</p>
-      <p style="font-size:12px; color:var(--text-secondary); opacity:0.6; margin-top:4px;">
-        <!-- REPLACE this block with a YouTube embed when ready -->
-        Short demo video will be added here
-      </p>
-    </div>
+    <div class="video-placeholder"><p style="font-size:14px;color:var(--gray-500);">Video coming soon</p></div>
   </section>
 
-  <!-- ═══════════════ DOWNLOAD ALL ═══════════════ -->
   <section>
     <div class="download-section">
       <h3>Download press kit</h3>
       <p>All assets in one ZIP: app icon, feature graphic, phone-framed screenshots, logos, and this fact sheet as plain text.</p>
       <div class="download-buttons">
-        <!-- REPLACE href with actual ZIP path when assets are bundled -->
-        <a href="../assets/press/BillDay-Press-Kit.zip" class="btn btn-primary">
-          ⬇ Download ZIP
-        </a>
-        <a href="https://play.google.com/store/apps/details?id=com.wellfield.billday&utm_source=press&utm_medium=presskit" class="btn btn-secondary" target="_blank" rel="noopener">
-          📱 View on Google Play
-        </a>
+        <a href="../assets/press/BillDay-Press-Kit.zip" class="btn btn-primary">⬇ Download ZIP</a>
+        <a href="https://play.google.com/store/apps/details?id=com.wellfield.billday&utm_source=press&utm_medium=presskit" class="btn btn-secondary" target="_blank" rel="noopener">📱 View on Google Play</a>
       </div>
-      <div class="play-badge">
-        <a href="https://play.google.com/store/apps/details?id=com.wellfield.billday&utm_source=press&utm_medium=presskit" target="_blank" rel="noopener">
-          <img src="../google-play-badge.svg" alt="Get it on Google Play" />
-        </a>
-      </div>
+      <div class="play-badge-small"><a href="https://play.google.com/store/apps/details?id=com.wellfield.billday&utm_source=press&utm_medium=presskit" target="_blank" rel="noopener"><img src="../google-play-badge.svg" alt="Get it on Google Play" /></a></div>
     </div>
   </section>
 
-  <!-- ═══════════════ CONTACT ═══════════════ -->
   <section>
     <div class="section-label">Contact</div>
     <h2>Get in touch</h2>
     <p>For press enquiries, review copies, or partnership discussions.</p>
     <div class="contact-grid">
-      <div class="contact-card">
-        <div class="contact-type">Press &amp; Media</div>
-        <a href="mailto:riodigital827@gmail.com">riodigital827@gmail.com</a>
-        <p>Happy to provide additional screenshots, answer questions, or arrange a walkthrough.</p>
-      </div>
-      <div class="contact-card">
-        <div class="contact-type">On the Web</div>
-        <a href="https://riodigitalstudios.github.io/billday/">riodigitalstudios.github.io/billday</a>
-        <p>Landing page &middot; <a href="https://play.google.com/store/apps/details?id=com.wellfield.billday" target="_blank" rel="noopener">Google Play listing</a></p>
-      </div>
+      <div class="contact-card"><div class="contact-type">Press &amp; Media</div><a href="mailto:riodigital827@gmail.com">riodigital827@gmail.com</a><p>Happy to provide additional screenshots, answer questions, or arrange a walkthrough.</p></div>
+      <div class="contact-card"><div class="contact-type">On the Web</div><a href="https://riodigitalstudios.github.io/billday/">riodigitalstudios.github.io/billday</a><p>Landing page &middot; <a href="https://play.google.com/store/apps/details?id=com.wellfield.billday" target="_blank" rel="noopener">Google Play listing</a></p></div>
     </div>
   </section>
 
-  <!-- ═══════════════ FOOTER ═══════════════ -->
   <footer>
-    <div class="footer-brand">Bill<span>Day</span></div>
-    <p>&copy; 2026 BillDay &middot; Rio Digital Studios &middot; <a href="https://riodigitalstudios.github.io/billday/">Home</a></p>
+    <div class="footer-brand"><img src="../icon.png" alt="BillDay" width="24" height="24" /><span>Bill<em>Day</em></span></div>
+    <p>&copy; 2026 Rio Digital Studios &middot; <a href="https://riodigitalstudios.github.io/billday/">Home</a></p>
   </footer>
 
 </div>
-
 </body>
 </html>
