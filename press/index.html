@@ -46,7 +46,6 @@
     a { color: var(--blue-light); text-decoration: none; }
     a:hover { text-decoration: underline; }
 
-    /* ── LAYOUT ── */
     .container {
       max-width: 960px;
       margin: 0 auto;
@@ -181,51 +180,40 @@
     /* ── SCREENSHOTS GRID ── */
     .screenshots-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      grid-template-columns: repeat(4, 1fr);
       gap: 16px;
       margin-top: 20px;
     }
     .screenshot-slot {
-      aspect-ratio: 9/19.5;
       background: var(--bg-card);
-      border: 2px dashed var(--border-light);
+      border: 1px solid var(--border);
       border-radius: 16px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+      overflow: hidden;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .screenshot-slot:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.4);
+    }
+    .screenshot-slot img {
+      width: 100%;
+      display: block;
+      border-radius: 15px;
+    }
+    .screenshot-caption {
+      padding: 10px 12px;
       text-align: center;
-      padding: 20px;
-      transition: border-color 0.2s;
     }
-    .screenshot-slot:hover { border-color: var(--blue-light); }
-    .screenshot-slot .slot-icon {
-      font-size: 32px;
-      margin-bottom: 12px;
-      opacity: 0.5;
-    }
-    .screenshot-slot .slot-label {
-      font-size: 13px;
+    .screenshot-caption strong {
+      display: block;
+      font-size: 12px;
       font-weight: 700;
-      color: var(--text-muted);
+      color: var(--text-white);
+      margin-bottom: 2px;
     }
-    .screenshot-slot .slot-desc {
+    .screenshot-caption span {
       font-size: 11px;
       color: var(--text-muted);
-      opacity: 0.6;
-      margin-top: 4px;
-    }
-    /* When real images are added, use this class */
-    .screenshot-slot.has-image {
-      border: 1px solid var(--border);
-      padding: 0;
-      overflow: hidden;
-    }
-    .screenshot-slot.has-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      border-radius: 14px;
     }
 
     /* ── LOGO ASSETS ── */
@@ -395,6 +383,8 @@
       background: rgba(255,255,255,0.04);
       border-color: rgba(255,255,255,0.2);
     }
+    .play-badge { margin-top: 20px; }
+    .play-badge img { height: 50px; }
 
     /* ── CONTACT ── */
     .contact-grid {
@@ -448,6 +438,9 @@
     footer a:hover { color: var(--text-white); }
 
     /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .screenshots-grid { grid-template-columns: repeat(3, 1fr); }
+    }
     @media (max-width: 700px) {
       .press-header-inner { flex-direction: column; gap: 20px; text-align: center; }
       .press-header h1 { font-size: 32px; }
@@ -469,7 +462,7 @@
   <header class="press-header">
     <div class="press-header-inner">
       <div class="press-header-icon">
-        <!-- REPLACE: drop in app-icon-512.png -->
+        <!-- Uses the feature graphic cropped as icon; replace with app-icon-512.png when available -->
         <div style="font-size:48px;">📅</div>
       </div>
       <div>
@@ -556,7 +549,7 @@
         <div class="feature-icon">📊</div>
         <div>
           <h4>Spending Insights</h4>
-          <p>Monthly breakdowns, category analysis, and upcoming payment projections.</p>
+          <p>Monthly breakdowns, category analysis, cost changes, and upcoming payment projections.</p>
         </div>
       </div>
       <div class="feature-item">
@@ -596,10 +589,8 @@
     <h2>Google Play feature graphic</h2>
     <p>1024 &times; 500px — suitable for Play Store, press articles, and social media headers.</p>
     <div class="feature-graphic">
-      <!-- This references the feature graphic from your project assets -->
-      <img src="assets/press/billday_feature_graphic.png"
-           alt="BillDay feature graphic — calendar icon with bill category symbols and tagline: Your bills, always on time."
-           onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'padding:60px;text-align:center;color:var(--text-muted);font-size:14px;\'>Feature graphic will appear here<br><small>Place billday_feature_graphic.png in assets/press/</small></div>';" />
+      <img src="../assets/press/billday_feature_graphic.png"
+           alt="BillDay feature graphic — calendar icon with bill category symbols and tagline: Your bills, always on time." />
     </div>
   </section>
 
@@ -610,44 +601,63 @@
     <p>Phone-framed, high-resolution screenshots. Right-click any image to save, or download the full set below.</p>
 
     <div class="screenshots-grid">
-      <div class="screenshot-slot" id="ss-1">
-        <div class="slot-icon">📱</div>
-        <div class="slot-label">Home Screen</div>
-        <div class="slot-desc">Bill list sorted by due date</div>
+      <div class="screenshot-slot">
+        <img src="../assets/press/US_02.png" alt="BillDay home screen showing overdue bills" />
+        <div class="screenshot-caption">
+          <strong>Overdue Alerts</strong>
+          <span>Home screen with overdue bills highlighted</span>
+        </div>
       </div>
-      <div class="screenshot-slot" id="ss-2">
-        <div class="slot-icon">📱</div>
-        <div class="slot-label">Bill Detail</div>
-        <div class="slot-desc">Individual bill view</div>
+      <div class="screenshot-slot">
+        <img src="../assets/press/US_03.png" alt="BillDay home screen with all bills up to date" />
+        <div class="screenshot-caption">
+          <strong>All Up to Date</strong>
+          <span>Home screen with all bills current</span>
+        </div>
       </div>
-      <div class="screenshot-slot" id="ss-3">
-        <div class="slot-icon">📱</div>
-        <div class="slot-label"> View</div>
-        <div class="slot-desc">Monthly bill </div>
+      <div class="screenshot-slot">
+        <img src="../assets/press/US_04.png" alt="BillDay calendar view showing monthly bill schedule" />
+        <div class="screenshot-caption">
+          <strong>Calendar View</strong>
+          <span>Monthly bill schedule at a glance</span>
+        </div>
       </div>
-      <div class="screenshot-slot" id="ss-4">
-        <div class="slot-icon">📱</div>
-        <div class="slot-label">Insights</div>
-        <div class="slot-desc">Spending breakdown &amp; projections</div>
+      <div class="screenshot-slot">
+        <img src="../assets/press/US_05.png" alt="BillDay deep dive spending insights" />
+        <div class="screenshot-caption">
+          <strong>Deep Dive Insights</strong>
+          <span>Detailed spending analysis</span>
+        </div>
       </div>
-      <div class="screenshot-slot has-image"><img src="assets/press/US_04.png" alt="...">
-        <div class="slot-icon">📱</div>
-        <div class="slot-label">Bill Guide</div>
-        <div class="slot-desc">Country-specific provider comparison</div>
+      <div class="screenshot-slot">
+        <img src="../assets/press/US_06.png" alt="BillDay recent cost changes view" />
+        <div class="screenshot-caption">
+          <strong>Cost Changes</strong>
+          <span>Track recent bill increases</span>
+        </div>
       </div>
-      <div class="screenshot-slot" id="ss-6">
-        <div class="slot-icon">📱</div>
-        <div class="slot-label">Reminder</div>
-        <div class="slot-desc">Notification on lock screen</div>
+      <div class="screenshot-slot">
+        <img src="../assets/press/US_07.png" alt="BillDay save on this bill comparison feature" />
+        <div class="screenshot-caption">
+          <strong>Save on This Bill</strong>
+          <span>Provider comparison suggestions</span>
+        </div>
+      </div>
+      <div class="screenshot-slot">
+        <img src="../assets/press/US_08.png" alt="BillDay upcoming renewals in insights" />
+        <div class="screenshot-caption">
+          <strong>Upcoming Renewals</strong>
+          <span>Renewal dates and projections</span>
+        </div>
+      </div>
+      <div class="screenshot-slot">
+        <img src="../assets/press/US_09.png" alt="BillDay at a glance insights summary" />
+        <div class="screenshot-caption">
+          <strong>At a Glance</strong>
+          <span>Monthly spending overview</span>
+        </div>
       </div>
     </div>
-
-    <p style="margin-top:16px; font-size:13px; opacity:0.6;">
-      <!-- INSTRUCTION: To add real screenshots, replace each .screenshot-slot div with:
-           <div class="screenshot-slot has-image"><img src="assets/press/screenshot-01.png" alt="..."></div>
-      -->
-      Placeholder slots shown — replace with final screenshots when ready.
-    </p>
   </section>
 
   <!-- ═══════════════ LOGOS & ICON ═══════════════ -->
@@ -659,7 +669,7 @@
     <div class="logos-row">
       <div class="logo-card">
         <div class="logo-preview-placeholder">📅</div>
-        <!-- REPLACE: <div class="logo-preview"><img src="assets/press/app-icon-512.png" alt="BillDay app icon"></div> -->
+        <!-- REPLACE with: <div class="logo-preview"><img src="../assets/press/app-icon-512.png" alt="BillDay app icon"></div> -->
         <div class="logo-meta">
           <strong>App Icon</strong>
           <span>512 &times; 512px &middot; PNG</span>
@@ -667,7 +677,7 @@
       </div>
       <div class="logo-card">
         <div class="logo-preview-placeholder">R</div>
-        <!-- REPLACE: <div class="logo-preview"><img src="assets/press/rio-digital-logo.png" alt="Rio Digital Studios logo"></div> -->
+        <!-- REPLACE with: <div class="logo-preview"><img src="../assets/press/rio-digital-logo.png" alt="Rio Digital Studios logo"></div> -->
         <div class="logo-meta">
           <strong>Rio Digital Studios</strong>
           <span>Brand logo &middot; PNG</span>
@@ -683,10 +693,10 @@
     <p>A short screen-recording demo of BillDay in action. Suitable for embedding in articles or social posts.</p>
     <div style="background:var(--bg-card); border:2px dashed var(--border-light); border-radius:16px; padding:60px; text-align:center; margin-top:20px;">
       <div style="font-size:40px; margin-bottom:12px; opacity:0.4;">▶️</div>
-      <p style="font-size:14px; color:var(--text-muted);">Video embed will appear here</p>
+      <p style="font-size:14px; color:var(--text-muted);">Video coming soon</p>
       <p style="font-size:12px; color:var(--text-muted); opacity:0.6; margin-top:4px;">
-        <!-- INSTRUCTION: Replace this block with a YouTube/TikTok embed or direct video link -->
-        Add YouTube embed or direct .mp4 link when ready
+        <!-- REPLACE this block with a YouTube embed when ready -->
+        Short demo video will be added here
       </p>
     </div>
   </section>
@@ -697,12 +707,17 @@
       <h3>Download press kit</h3>
       <p>All assets in one ZIP: app icon, feature graphic, phone-framed screenshots, logos, and this fact sheet as plain text.</p>
       <div class="download-buttons">
-        <!-- REPLACE href with actual ZIP path when assets are ready -->
-        <a href="assets/press/BillDay-Press-Kit.zip" class="btn btn-primary">
+        <!-- REPLACE href with actual ZIP path when assets are bundled -->
+        <a href="../assets/press/BillDay-Press-Kit.zip" class="btn btn-primary">
           ⬇ Download ZIP
         </a>
         <a href="https://play.google.com/store/apps/details?id=com.wellfield.billday&utm_source=press&utm_medium=presskit" class="btn btn-secondary" target="_blank" rel="noopener">
           📱 View on Google Play
+        </a>
+      </div>
+      <div class="play-badge">
+        <a href="https://play.google.com/store/apps/details?id=com.wellfield.billday&utm_source=press&utm_medium=presskit" target="_blank" rel="noopener">
+          <img src="../google-play-badge.svg" alt="Get it on Google Play" />
         </a>
       </div>
     </div>
@@ -721,7 +736,7 @@
       </div>
       <div class="contact-card">
         <div class="contact-type">On the Web</div>
-        <a href="https://riodigitalstudios.github.io/billday/">billdayapp.com</a>
+        <a href="https://riodigitalstudios.github.io/billday/">riodigitalstudios.github.io/billday</a>
         <p>Landing page &middot; <a href="https://play.google.com/store/apps/details?id=com.wellfield.billday" target="_blank" rel="noopener">Google Play listing</a></p>
       </div>
     </div>
